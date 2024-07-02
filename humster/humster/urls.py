@@ -23,7 +23,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('сontact/', include('main.urls')),
-    path('community/', include('main.urls')),
-    path('clicker/', include('main.urls')),
+    path('main/', include('main.urls')),
+    path('news/', include('news.urls')),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
