@@ -2,18 +2,43 @@
 
 {% block title %}
 <title>Новостная страница</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .container h3 {
+            margin: 0;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<h1>Новости Hamster Kombat</h1>
-
-{% for news in news %}
-    <div class="news">
-        <h2>{{ news.title }}</h2>
-        <p>{{ news.short_description }}</p>
-        <p>{{ news.text }}</p>
-        <p>Автор: {{ news.author }}</p>
-        <p>Дата публикации: {{ news.pub_date }}</p>
+<div class="container">
+        <h3>Новости Hamster Kombat</h3>
+        <div>
+            <a href="{% url 'add_news' %}" type="button" class="btn btn-primary">Добавить новость</a>
+        </div>
     </div>
-{% endfor %}
+<div>
+    {% if news %}
+        {% for new in news %}
+            <div class="card" style="width: 70rem;">
+                <div class="card-body">
+                    <h2>{{ new.title }}</h2>
+                    <p>{{ new.short_description }}</p>
+                    <p>{{ new.text }}</p>
+                    <p>Автор: {{ new.author }}</p>
+                    <p>Дата публикации: {{ new.pub_date }}</p>
+                    <a href="#" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Новостей нет</p>
+    {% endif %}
+</div>
 {% endblock %}
